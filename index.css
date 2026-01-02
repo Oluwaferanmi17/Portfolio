@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ============================== */
+/* ATTENTION: The above code is the new version of the code. It is the same as the old version, but with a comma after the first keyframe selector. */
