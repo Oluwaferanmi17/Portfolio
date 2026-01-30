@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { FaGraduationCap } from "react-icons/fa";
+import { FaGraduationCap, FaExternalLinkAlt } from "react-icons/fa";
+
 const educationData = [
   {
     school: "Baze University",
@@ -7,7 +8,7 @@ const educationData = [
     year: "2022 – 2025",
     description:
       "Focused on software engineering, databases, and full-stack development.",
-    certificateLink: "#", // Replace with real link if available
+    certificateLink: "#",
   },
   {
     school: "FreeCodeCamp",
@@ -18,45 +19,68 @@ const educationData = [
     certificateLink: "#",
   },
 ];
+
 const Education = () => {
   return (
-    <section className="min-h-screen bg-[#080808] px-6 sm:px-12 py-16 text-white">
-      <h2 className="text-4xl font-bold text-center text-[#00ffee] mb-12">
+    <section className="min-h-screen bg-[#080808] px-6 md:px-20 lg:px-40 py-24 text-white">
+      <motion.h2
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-4xl md:text-5xl font-bold text-center text-[#00ffee] mb-16"
+      >
         Education
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 max-w-6xl mx-auto">
+      </motion.h2>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
         {educationData.map((edu, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            whileHover={{ y: -10 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
             viewport={{ once: true }}
-            className="border border-[#00ffee] rounded-2xl p-6 shadow-[0_0_25px_#00ffee] hover:shadow-[0_0_35px_#00ffee] transition duration-300"
+            className="group relative bg-[#111] border border-[#00ffee]/20 rounded-3xl p-8 hover:border-[#00ffee] transition-all duration-500 overflow-hidden"
           >
-            <FaGraduationCap className="text-[#00ffee] text-3xl mb-3" />
+            {/* Subtle Gradient Background on Hover */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#00ffee]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-            <h3 className="text-2xl font-bold text-[#00ffee] mb-1">
-              {edu.school}
-            </h3>
-            <p className="italic text-white">{edu.degree}</p>
-            <p className="text-sm text-gray-400 mb-3">{edu.year}</p>
-            <p className="text-gray-300 mb-4">{edu.description}</p>
+            <div className="relative z-10">
+              <div className="flex justify-between items-start mb-4">
+                <div className="p-3 bg-[#00ffee]/10 rounded-2xl">
+                  <FaGraduationCap className="text-[#00ffee] text-3xl" />
+                </div>
+                <span className="text-sm font-mono text-[#00ffee]/70 bg-[#00ffee]/5 px-3 py-1 rounded-full border border-[#00ffee]/10">
+                  {edu.year}
+                </span>
+              </div>
 
-            {edu.certificateLink && (
-              <a
-                href={edu.certificateLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block border border-[#00ffee] text-[#00ffee] rounded-full px-4 py-1 text-sm hover:bg-[#00ffee] hover:text-black transition duration-300"
-              >
-                View Certificate
-              </a>
-            )}
+              <h3 className="text-2xl font-bold text-white group-hover:text-[#00ffee] transition-colors duration-300">
+                {edu.school}
+              </h3>
+              <p className="text-[#00ffee] font-medium mb-4">{edu.degree}</p>
+
+              <p className="text-gray-400 leading-relaxed mb-6">
+                {edu.description}
+              </p>
+
+              {edu.certificateLink && (
+                <a
+                  href={edu.certificateLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-[#00ffee] hover:underline"
+                >
+                  View Certificate <FaExternalLinkAlt className="text-xs" />
+                </a>
+              )}
+            </div>
           </motion.div>
         ))}
       </div>
     </section>
   );
 };
+
 export default Education;

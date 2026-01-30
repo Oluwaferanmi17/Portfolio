@@ -1,24 +1,29 @@
 import { motion } from "framer-motion";
+
 const Buttons = () => {
   return (
-    <div className="ml-[10rem] mt-5 flex gap-4">
+    // justify-center on mobile, start on desktop. Removed ml-[10rem].
+    <div className="flex flex-row justify-center lg:justify-start gap-6 mt-10">
       <motion.button
-        className="underline bg-[#00ffee] rounded-full text-black p-2 border border-[#00ffee] shadow-[0_0_25px_#00ffee] transition duration-300 w-32"
-        style={{ textShadow: "0 0 25px #00ffee" }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+        className="px-8 py-3 bg-[#00ffee] text-black font-bold rounded-full shadow-[0_0_20px_rgba(0,255,238,0.4)] hover:shadow-[0_0_30px_rgba(0,255,238,0.6)] transition-shadow duration-300 min-w-[140px]"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
       >
         Hire Me
       </motion.button>
+
       <motion.button
-        className="underline text-[#00ffee] rounded-full border-[#00ffee] border p-2 shadow-[0_0_25px_#00ffee] transition duration-300 w-32"
-        style={{ textShadow: "0 0 25px #00ffee" }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+        className="px-8 py-3 border-2 border-[#00ffee] text-[#00ffee] font-bold rounded-full hover:bg-[#00ffee]/10 transition-colors duration-300 min-w-[140px]"
+        whileHover={{
+          scale: 1.05,
+          boxShadow: "0 0 20px rgba(0,255,238,0.3)",
+        }}
+        whileTap={{ scale: 0.95 }}
       >
         Contact
       </motion.button>
     </div>
   );
 };
+
 export default Buttons;
